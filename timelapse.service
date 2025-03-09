@@ -1,0 +1,15 @@
+[Unit]
+Description=Timelapse Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/raspberry/timelapse/timelapse.py
+WorkingDirectory=/home/raspberry
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=raspberry
+
+[Install]
+WantedBy=multi-user.target

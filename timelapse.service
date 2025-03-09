@@ -4,12 +4,12 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/usr/bin/python3 /home/raspberry/timelapse/timelapse.py
+ExecStart=/usr/bin/lxterminal -e /usr/bin/python3 /home/raspberry/timelapse/timelapse.py
+Restart=always
+User=raspberry
 WorkingDirectory=/home/raspberry
 StandardOutput=inherit
 StandardError=inherit
-Restart=always
-User=raspberry
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

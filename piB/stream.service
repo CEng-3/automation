@@ -1,0 +1,15 @@
+[Unit]
+Description=Stream Script
+After=network-online.target
+Wants=network-online.target
+Display=:0
+
+[Service]
+ExecStart=/usr/bin/lxterminal -e "bash -c 'python3 /home/raspberry/transfers/stream.py; exec bash'"
+WorkingDirectory=/home/raspberry/transfers
+Restart=always
+User=raspberry
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=multi-user.target

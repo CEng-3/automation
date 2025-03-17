@@ -1,0 +1,18 @@
+[Unit]
+Description=Timelapse Script
+After=network-online.target
+Wants=network-online.target
+Display=:0
+
+[Service]
+ExecStart=/usr/bin/lxterminal -e "bash -c 'python3 /home/raspberry/timelapse/timelapse.py; exec bash'"
+WorkingDirectory=/home/raspberry/timelapse
+Restart=on-failure
+User=raspberry
+Environment=DISPLAY=:0
+
+# Automatically stop the service at 18:05 if it's still running
+ExecStopPost=/bin/bash -c 'if [[ $(date +\%H%M) -ge 1805 ]]; then systemctl stop timelapse.service; fi'
+
+[Install]
+WantedBy=multi-user.target
